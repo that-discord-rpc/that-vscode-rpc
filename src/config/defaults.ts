@@ -11,7 +11,7 @@ import type { DiscordConfig } from '../discord/types';
 
 /** The default base URL for icon assets. */
 export const DEFAULT_ASSET_BASE_URL =
-  'https://raw.githubusercontent.com/that-vscode-rpc/that-vscode-rpc/main/assets';
+  'https://raw.githubusercontent.com/that-discord-rpc/that-vscode-rpc/main/assets';
 
 /**
  * The Discord application ID. Empty by default: Rich Presence only works with

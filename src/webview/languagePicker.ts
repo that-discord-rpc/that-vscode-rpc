@@ -117,6 +117,7 @@ export class LanguagePickerPanel {
     // Set the document only after the message listener exists: the Webview
     // posts `ready` as soon as its script runs, and a missed message would
     // leave the panel empty.
+
     this.panel.webview.html = this.renderHtml(template);
 
     context.subscriptions.push(this.panel);

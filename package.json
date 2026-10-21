@@ -30,12 +30,12 @@
   "main": "./dist/extension.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/that-vscode-rpc/that-vscode-rpc.git"
+    "url": "https://github.com/that-discord-rpc/that-vscode-rpc.git"
   },
   "bugs": {
-    "url": "https://github.com/that-vscode-rpc/that-vscode-rpc/issues"
+    "url": "https://github.com/that-discord-rpc/that-vscode-rpc/issues"
   },
-  "homepage": "https://github.com/that-vscode-rpc/that-vscode-rpc#readme",
+  "homepage": "https://github.com/that-discord-rpc/that-vscode-rpc#readme",
   "galleryBanner": {
     "color": "#1e1e2e",
     "theme": "dark"
@@ -169,7 +169,7 @@
         },
         "thatVscodeRpc.image.baseUrl": {
           "type": "string",
-          "default": "https://raw.githubusercontent.com/that-vscode-rpc/that-vscode-rpc/main/assets",
+          "default": "https://raw.githubusercontent.com/that-discord-rpc/that-vscode-rpc/main/assets",
           "markdownDescription": "HTTPS base URL used to resolve language and state icon images. Discord fetches these images itself, so other schemes are ignored."
         },
         "thatVscodeRpc.status.showElapsedTime": {

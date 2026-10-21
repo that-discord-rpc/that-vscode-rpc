@@ -177,7 +177,7 @@ npm run package      # build a .vsix with vsce
 
 ## Contributing
 
-Issues and pull requests are welcome at <https://github.com/that-vscode-rpc/that-vscode-rpc>. See `CHANGELOG.md` for release notes.
+Issues and pull requests are welcome at <https://github.com/that-discord-rpc/that-vscode-rpc>. See `CHANGELOG.md` for release notes.
 
 ## License
 

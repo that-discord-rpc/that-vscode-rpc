@@ -1,0 +1,280 @@
+{
+  "name": "that-vscode-rpc",
+  "displayName": "That VSCode RPC",
+  "description": "Discord Rich Presence for VS Code. Fully customizable status, details, state, images, and buttons.",
+  "version": "0.1.0",
+  "publisher": "that-vscode-rpc",
+  "license": "MIT",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "extensionKind": [
+    "ui"
+  ],
+  "capabilities": {
+    "untrustedWorkspaces": {
+      "supported": true
+    }
+  },
+  "keywords": [
+    "discord",
+    "rich presence",
+    "rpc",
+    "presence",
+    "status"
+  ],
+  "icon": "assets/logos/icon.png",
+  "main": "./dist/extension.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/that-vscode-rpc/that-vscode-rpc.git"
+  },
+  "bugs": {
+    "url": "https://github.com/that-vscode-rpc/that-vscode-rpc/issues"
+  },
+  "homepage": "https://github.com/that-vscode-rpc/that-vscode-rpc#readme",
+  "galleryBanner": {
+    "color": "#1e1e2e",
+    "theme": "dark"
+  },
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "thatVscodeRpc.enable",
+        "title": "That VSCode RPC: Enable"
+      },
+      {
+        "command": "thatVscodeRpc.disable",
+        "title": "That VSCode RPC: Disable"
+      },
+      {
+        "command": "thatVscodeRpc.reconnect",
+        "title": "That VSCode RPC: Reconnect"
+      },
+      {
+        "command": "thatVscodeRpc.showStatus",
+        "title": "That VSCode RPC: Show Status"
+      },
+      {
+        "command": "thatVscodeRpc.openLanguagePicker",
+        "title": "That VSCode RPC: Open Language Picker"
+      }
+    ],
+    "configuration": {
+      "title": "That VSCode RPC",
+      "properties": {
+        "thatVscodeRpc.general.enabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable Discord Rich Presence."
+        },
+        "thatVscodeRpc.general.clientId": {
+          "type": "string",
+          "default": "",
+          "markdownDescription": "Your Discord Application (Client) ID, 17–20 digits. Create an application at https://discord.com/developers/applications — no bot or token is needed. Rich Presence cannot work until this is set."
+        },
+        "thatVscodeRpc.general.reconnectOnDisconnect": {
+          "type": "boolean",
+          "default": true,
+          "description": "Automatically reconnect when Discord disconnects."
+        },
+        "thatVscodeRpc.general.reconnectAttempts": {
+          "type": "number",
+          "default": 5,
+          "minimum": 0,
+          "description": "Maximum reconnect attempts. Set to 0 for infinite."
+        },
+        "thatVscodeRpc.general.idleTimeoutMinutes": {
+          "type": "number",
+          "default": 5,
+          "minimum": 0,
+          "description": "Minutes of inactivity before showing idle state. Set to 0 to disable."
+        },
+        "thatVscodeRpc.languages.mode": {
+          "type": "string",
+          "enum": [
+            "main",
+            "detailed"
+          ],
+          "enumDescriptions": [
+            "Show only main language names and icons.",
+            "Show detailed language variants when available."
+          ],
+          "default": "detailed",
+          "description": "How to resolve a file's language to a displayed icon and label."
+        },
+        "thatVscodeRpc.languages.enabled": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": [],
+          "description": "Icon keys of languages the user permits to be shown. Empty means all enabled."
+        },
+        "thatVscodeRpc.languages.fallbackToVscodeIcon": {
+          "type": "boolean",
+          "default": true,
+          "description": "Fall back to the VS Code icon when no language is permitted to be shown."
+        },
+        "thatVscodeRpc.details.enabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "Show the details line in Rich Presence."
+        },
+        "thatVscodeRpc.details.template": {
+          "type": "string",
+          "default": "Editing {file}",
+          "description": "Template for the details line. Supports {file}, {workspace}, {language}."
+        },
+        "thatVscodeRpc.details.showFileName": {
+          "type": "boolean",
+          "default": true,
+          "description": "Include the file name in the details line."
+        },
+        "thatVscodeRpc.state.enabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "Show the state line in Rich Presence."
+        },
+        "thatVscodeRpc.state.template": {
+          "type": "string",
+          "default": "In {workspace}",
+          "description": "Template for the state line. Supports {file}, {workspace}, {language}."
+        },
+        "thatVscodeRpc.state.showWorkspaceName": {
+          "type": "boolean",
+          "default": true,
+          "description": "Include the workspace name in the state line."
+        },
+        "thatVscodeRpc.image.enabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "Show images in Rich Presence."
+        },
+        "thatVscodeRpc.image.useLanguageIcon": {
+          "type": "boolean",
+          "default": true,
+          "description": "Use the resolved language icon as the large image."
+        },
+        "thatVscodeRpc.image.showVscodeIconAsSmall": {
+          "type": "boolean",
+          "default": true,
+          "description": "Show the VS Code icon as the small image."
+        },
+        "thatVscodeRpc.image.baseUrl": {
+          "type": "string",
+          "default": "https://raw.githubusercontent.com/that-vscode-rpc/that-vscode-rpc/main/assets",
+          "markdownDescription": "HTTPS base URL used to resolve language and state icon images. Discord fetches these images itself, so other schemes are ignored."
+        },
+        "thatVscodeRpc.status.showElapsedTime": {
+          "type": "boolean",
+          "default": true,
+          "description": "Show elapsed session time."
+        },
+        "thatVscodeRpc.status.resetOnFileChange": {
+          "type": "boolean",
+          "default": false,
+          "description": "Reset the elapsed timer when switching files."
+        },
+        "thatVscodeRpc.ignore.workspaces": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": [],
+          "description": "Workspace names where Rich Presence is disabled."
+        },
+        "thatVscodeRpc.ignore.languages": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": [],
+          "description": "Language IDs that are never shown."
+        },
+        "thatVscodeRpc.buttons.enabled": {
+          "type": "boolean",
+          "default": false,
+          "description": "Enable Rich Presence buttons."
+        },
+        "thatVscodeRpc.buttons.primary": {
+          "type": "object",
+          "default": {
+            "label": "",
+            "url": ""
+          },
+          "description": "Primary button configuration."
+        },
+        "thatVscodeRpc.buttons.secondary": {
+          "type": "object",
+          "default": {
+            "label": "",
+            "url": ""
+          },
+          "description": "Secondary button configuration."
+        },
+        "thatVscodeRpc.misc.debugLogging": {
+          "type": "boolean",
+          "default": false,
+          "description": "Enable verbose logging in the output channel."
+        },
+        "thatVscodeRpc.advanced.updateIntervalMs": {
+          "type": "number",
+          "default": 1500,
+          "minimum": 500,
+          "description": "Minimum interval between Rich Presence updates, in milliseconds."
+        },
+        "thatVscodeRpc.advanced.suppressUntitledFiles": {
+          "type": "boolean",
+          "default": true,
+          "description": "Do not update presence for untitled files."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "build": "node esbuild.js",
+    "build:prod": "node esbuild.js --production",
+    "watch": "node esbuild.js --watch",
+    "build:webview": "node esbuild.js --webview",
+    "compile": "tsc -p ./",
+    "typecheck": "tsc -p ./ --noEmit",
+    "typecheck:webview": "tsc -p src/webview/html/jsconfig.json",
+    "lint": "eslint src --ext ts",
+    "format": "prettier --write \"src/**/*.ts\"",
+    "check": "npm run lint && npm run typecheck && npm run typecheck:webview && npm run build",
+    "test": "node ./out/test/runTest.js",
+    "pretest": "npm run build && tsc -p ./",
+    "test:unit": "mocha --ui tdd \"out/test/suite/debounce.test.js\" \"out/test/suite/messages.test.js\" \"out/test/suite/presence.test.js\" \"out/test/suite/rateLimiter.test.js\" \"out/test/suite/registryAssets.test.js\" \"out/test/suite/supportedLanguages.test.js\"",
+    "pretest:unit": "tsc -p ./",
+    "package": "vsce package",
+    "publish:patch": "vsce publish patch",
+    "publish:minor": "vsce publish minor",
+    "publish:major": "vsce publish major",
+    "vscode:prepublish": "node esbuild.js --production"
+  },
+  "dependencies": {
+    "discord-rpc": "^4.0.1"
+  },
+  "devDependencies": {
+    "@types/discord-rpc": "^4.0.9",
+    "@types/mocha": "^10.0.6",
+    "@types/node": "^20.11.0",
+    "@types/vscode": "^1.85.0",
+    "@typescript-eslint/eslint-plugin": "^7.0.0",
+    "@typescript-eslint/parser": "^7.0.0",
+    "@vscode/test-electron": "^2.3.9",
+    "@vscode/vsce": "^2.24.0",
+    "esbuild": "^0.20.0",
+    "eslint": "^8.56.0",
+    "mocha": "^10.3.0",
+    "prettier": "^3.2.0",
+    "typescript": "^5.4.0"
+  }
+}

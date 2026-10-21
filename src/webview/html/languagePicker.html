@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="Content-Security-Policy" content="{{csp}}" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Language Picker</title>
+    <link rel="stylesheet" href="{{styleUri}}" />
+  </head>
+  <body>
+    <header class="toolbar">
+      <input
+        id="search"
+        type="search"
+        placeholder="Search languages…"
+        autocomplete="off"
+        spellcheck="false"
+        aria-label="Search languages"
+      />
+      <div class="mode" role="radiogroup" aria-label="Language detail mode">
+        <label>
+          <input type="radio" name="mode" value="main" />
+          Main only
+        </label>
+        <label>
+          <input type="radio" name="mode" value="detailed" checked />
+          Detailed
+        </label>
+      </div>
+      <button id="reset" type="button" title="Show every language again">
+        Reset to all
+      </button>
+      <span id="status" role="status" aria-live="polite"></span>
+    </header>
+    <main id="tree" role="tree" aria-label="Languages"></main>
+    <script nonce="{{nonce}}" src="{{scriptUri}}"></script>
+  </body>
+</html>
